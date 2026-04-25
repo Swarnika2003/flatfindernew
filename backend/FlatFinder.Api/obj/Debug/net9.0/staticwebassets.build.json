@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "B5b5wqH2e03twEIU3lmoaKmm4M2XfeyvFYwxlKL++x4=",
+  "Source": "FlatFinder.Api",
+  "BasePath": "_content/FlatFinder.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
