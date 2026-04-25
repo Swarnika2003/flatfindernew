@@ -1,16 +1,18 @@
 import { useState } from 'react'
 import { apiFetch, type CreateFlatRequest } from '../lib/api'
-import { Button } from '/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
-import { Input } from './ui/input'
-import { Textarea } from './ui/textarea'
+import { Button } from '../../components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card'
+import { Input } from '../../components/ui/input'
+import { Textarea } from '../../components/ui/textarea'
 import { Plus, X } from 'lucide-react'
+import { useAuth } from '../context/AuthContext'
 
 interface AddFlatFormProps {
   onFlatAdded?: () => void
 }
 
 export default function AddFlatForm({ onFlatAdded }: AddFlatFormProps) {
+  const { logout } = useAuth()
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -55,7 +57,12 @@ export default function AddFlatForm({ onFlatAdded }: AddFlatFormProps) {
       setOpen(false)
       onFlatAdded?.()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create flat')
+      if (err instanceof Error && err.message === 'Authentication failed.') {
+        logout()
+        setError('Session expired. Please login again.')
+      } else {
+        setError(err instanceof Error ? err.message : 'Failed to create flat')
+      }
     } finally {
       setLoading(false)
     }

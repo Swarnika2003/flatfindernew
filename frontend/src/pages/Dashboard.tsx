@@ -14,7 +14,7 @@ import AddFlatForm from '../components/AddFlatForm'
 import Messages from '../components/Messages'
 import EmptyState from '../components/EmptyState'
 import { apiFetch, type FavoriteDto, type PagedResult } from '../lib/api'
-import { Button } from '../components/ui/button'
+import { Button } from '../../components/ui/button'
 import { formatNpr } from '../lib/utils'
 
 type TabType = 'listings' | 'favorites' | 'messages' | 'settings'

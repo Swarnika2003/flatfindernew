@@ -314,3 +314,4 @@
 /Users/swarnika/FlatFinder/backend/FlatFinder.Api/obj/Debug/net9.0/FlatFind.3773F2E5.Up2Date
 /Users/swarnika/FlatFinder/backend/FlatFinder.Api/obj/Debug/net9.0/FlatFinder.Api.genruntimeconfig.cache
 /Users/swarnika/FlatFinder/backend/FlatFinder.Api/obj/Debug/net9.0/ref/FlatFinder.Api.dll
+/Users/swarnika/FlatFinder/backend/FlatFinder.Api/obj/Debug/net9.0/FlatFinder.Api.sourcelink.json

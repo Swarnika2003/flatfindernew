@@ -1,9 +1,17 @@
 import { createContext, useContext, useState, type ReactNode } from 'react'
+import { apiFetch, setToken } from '@/lib/api'
 
 interface User {
   id: string
   name: string
   email: string
+}
+
+interface AuthResponse {
+  token: string
+  email: string
+  displayName: string
+  expiresAt: string
 }
 
 interface AuthContextType {
@@ -25,32 +33,53 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return null
   })
 
-  const login = async (email: string, _password: string): Promise<boolean> => {
-    // Mock login - replace with actual API call
-    const mockUser: User = {
-      id: '1',
-      name: email.split('@')[0],
-      email,
+  const login = async (email: string, password: string): Promise<boolean> => {
+    try {
+      const response = await apiFetch<AuthResponse>('/api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        skipAuth: true,
+      })
+      const userData: User = {
+        id: '1', // We don't have id in response, but can get from /me later
+        name: response.displayName,
+        email: response.email,
+      }
+      setUser(userData)
+      setToken(response.token)
+      localStorage.setItem('user', JSON.stringify(userData))
+      return true
+    } catch (error) {
+      console.error('Login failed:', error)
+      return false
     }
-    setUser(mockUser)
-    localStorage.setItem('user', JSON.stringify(mockUser))
-    return true
   }
 
-  const register = async (name: string, email: string, _password: string): Promise<boolean> => {
-    // Mock register - replace with actual API call
-    const mockUser: User = {
-      id: '1',
-      name,
-      email,
+  const register = async (name: string, email: string, password: string): Promise<boolean> => {
+    try {
+      const response = await apiFetch<AuthResponse>('/api/auth/register', {
+        method: 'POST',
+        body: JSON.stringify({ email, password, displayName: name }),
+        skipAuth: true,
+      })
+      const userData: User = {
+        id: '1',
+        name: response.displayName,
+        email: response.email,
+      }
+      setUser(userData)
+      setToken(response.token)
+      localStorage.setItem('user', JSON.stringify(userData))
+      return true
+    } catch (error) {
+      console.error('Register failed:', error)
+      return false
     }
-    setUser(mockUser)
-    localStorage.setItem('user', JSON.stringify(mockUser))
-    return true
   }
 
   const logout = () => {
     setUser(null)
+    setToken(null)
     localStorage.removeItem('user')
   }
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { apiFetch, type MessageDto, type PagedResult } from '../lib/api'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
-import { Button } from './ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card'
+import { Button } from '../../components/ui/button'
 import { Mail, CheckCircle2, Circle } from 'lucide-react'
 
 export default function Messages() {

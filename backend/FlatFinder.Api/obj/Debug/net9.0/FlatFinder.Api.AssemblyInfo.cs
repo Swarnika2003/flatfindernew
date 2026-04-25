@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FlatFinder.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf8165267744179391b2f26fcd8132ec7e473604")]
 [assembly: System.Reflection.AssemblyProductAttribute("FlatFinder.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FlatFinder.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
